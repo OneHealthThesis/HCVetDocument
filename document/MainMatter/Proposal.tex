@@ -9,19 +9,19 @@ Una de las cosas mas particularas que tiene este software es que está pensado p
 \begin{itemize}
 	\item Subir datos al servidor :
 	
-	Los nuevos datos generados se subirán al servidor
+	Los nuevos datos generados se subirán al servidor. Esto se realizo para tener una centralizacion de los datos, y de alguna forma una copia de seguridad de los mismos, en caso de perdida. También sirve para el proceso de sincronización en usuarios que tengan masctas en común, al tener esos datos en el servidor, proveerá esos datos a los usuarios que le sean requeridos.
 	
 	\item Bajar datos del Servidor :
 	
-	Todos los datos que hayan sido subidos al servidor, de todas las mascotas que el usuario sea dueño serán agregados a la base de datos local. 
+	Todos los datos que hayan sido subidos al servidor, de todas las mascotas que el usuario sea dueño serán agregados a la base de datos local. Está funcion mantiene actualizados los datos de cada usuario, por ahora solo agrega daatos, en un futuro se pudiara mejorar esta acción para que también actualice y elimine datos, que este proceso puede ser bastante complejo. 
 	
 	\item Asignar encargado :
 	
-	Se le notificará al servidor que un usuario ha sido asignado como encargado de una nueva mascota.  
+	Se le notificará al servidor que un usuario ha sido asignado como encargado de una nueva mascota. Esta funcion es necesaria, para que el servidor pueda proveer de los nuevos registros tanto a los dueños como a los encargados.
 	
 		\item Dessignar encargado :
 	
-	Se le notificará al servidor que un usuario ha dejado de ser  encargado de una mascota.  
+	Se le notificará al servidor que un usuario ha dejado de ser  encargado de una mascota. A la vez que un cliente deje de tener relacion con la mascota, se deberá tener encuenta para que no lleguen datos innecesarios a la hora de sincronizar   
 \end{itemize}
 
   
