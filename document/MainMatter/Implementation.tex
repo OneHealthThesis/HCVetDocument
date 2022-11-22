@@ -1,1 +1,45 @@
 \chapter{Desarrollo}\label{chapter:implementation}
+
+El sistema propuesto es una aplicación web, la cual expondrá una (Glocario)API que permitirá manejar el modelo y la sincronización de los datos de interés para el cuidado de las mascotas, haciendo uso del (Glosario)framework (Glosario)ASP.NET Web API. El framework .NET permite, de manera simple y elegante, la implementación de aplicaciones web rápidas y confiables. Otra de las características que agregan valor a este framework es que permite desarrollar, compilar y ejecutar aplicaciones en distintas plataformas, facilitando el desarrollo de la aplicación y la configuración del entorno de desarrollo. Se usó la herramienta Entity Framework Core, un ORM que facilita el acceso a datos, en este caso en una base de datos de SQL Server.
+\newline
+
+En este capítulo estaremos analizando las características de las herramientas utilizadas en este proyecto, con las que se integra .NET.
+
+\section{El lenguaje C\#:}
+
+\brackcite{albahari2021c}C\# es un lenguaje de programación de propósito, fuertemente tipado y orientado a objetos, diseñado por un equipo dirigido por Anders Hejlsberg. El lenguaje está orientado a la productividad, por lo que busca un balance entre simplicidad, expresividad y rendimiento.
+
+\section{Objet Relational Mapper(ORM) Entity Framework Core:}
+
+\brackcite{schwichtenberg2018modern}En el mundo de la computación actual aún usamos bases de datos relacionales, esto es debido a que su eficacia para representar y gestionar información nos permite modelar elementos de la vida real con relativa facilidad.
+
+En la (Glosario)POO nos apoyamos en los objetos para representar la información. Esta forma de representación es lo suficientemente expresiva para facilitarnos la definición de cualquier entidad real que se encuentre en un problema computacional. El problema en este caso, viene dado por la persistencia, la forma en la que almacenamos objetos limita la eficacia de su gestión.
+\newline
+
+Los (Glosario)ORM nacen con el fin de que los programadores puedan beneficiarse a la vez del poder expresivo de la POO y la eficacia del manejo de datos característica de las base de datos relacionales. Ahora los desarrolladores pueden concentrarse en el desarrollo orientado a objetos sin necesidad de preocuparse de tareas menos interesantes, como consultas básicas de crear, actualizar, eliminar y leer datos de una base de datos relacional. El decremento de errores  introducidos durante el desarrollo de software es considerable cuando se usa un ORM.
+\newline
+
+El ORM Entity Framework Core(EF Core) es un framework de acceso a datos, ligero y de código abierto desarrollado sobre (glocary)ADO.NET. Como está escrito en .NET Core es posible ejecutarlo en varios sistemas operativos, incluyendo sistemas operativos móviles como iOS y Android, estos últimos solo soportan acceso a base de datos locales como (Glosario)SQLite. \brackcite{ajcvickers2022Nov}La versión gratuita del framework provee soporte para varias bases de datos relacionales como:
+
+
+\begin{itemize}
+	\item SQL Server.
+    \item SQLite.
+    \item Base de datos en memoria de EF Core.
+    \item API de SQL de (Glosario)Azure Cosmos DB.
+    \item PostgreSQL.
+    \item MariaDB.
+    \item MySQL.
+    \item Archivos de Microsoft Access.
+    
+\end{itemize}
+
+Varias de las ventajas que podemos percibir de usar EF Core en el desarrollo de software son:
+
+\begin{itemize}
+	\item \textbf{Seguimiento de entidades:} Permite a EF Core saber cuando una entidad ha sido modificada. De esta forma el cambio de estado de un objeto siendo seguido por EF Core es automáticamente agregado al conjunto de operaciones a ejecutar en la base de datos cuando guardamos los cambios hechos.
+    \item \textbf{Generación de consultas:} EF Core genera consultas SQL eficientes en la mayoría de los escenarios. En caso de que la consulta generada automáticamente no tenga desempeño esperado, podemos entonces escribir la consulta SQL directamente nosotros para que sea ejecutada en la base de datos.
+    \item \textbf{Proyecciones usando Select:} Podemos generar proyecciones para nuestras consultas haciendo uso del método Select de LINQ. Evitando leer campos que pueden ser ignorados en algunos escenarios, reducimos la carga de información leída, mejorando así el rendimiento de nuestras consultas.
+    \item \textbf{Ejecución de grupos de consultas:} EF Core agrupa las consultas de actualización, inserción y eliminación en grupos para ser ejecutados en la base de datos. Usando esta estrategia disminuimos la cantidad de conexiones necesarias con la base de datos, aumentando así el rendimiento del software.
+    
+\end{itemize}
