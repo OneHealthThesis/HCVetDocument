@@ -73,11 +73,11 @@ Para la implementación de esta arquitectura la aplicación se dividirá en las 
 
 \subsection{Modelo de Datos }
 
-Para mantener una correcta sincronización entre todos los usuarios y tener una persistencia de  los datos es necesario el empleo de una base de datos(BD). Ahora bien, como se dijo aneriormente cada cliente tendrá una base de datos local en su móvil con los datos necesarios para satisfacer todas las querys relacionadas con él,en cambio la BD de la API tendrá los datos de todos los usuarios. 
+Para mantener una correcta sincronización entre todos los usuarios y tener una persistencia de  los datos es necesario el empleo de una base de datos(BD). Ahora bien, como se dijo aneriormente cada cliente tendrá una base de datos local en su móvil con los datos necesarios para satisfacer todas las consultas relacionadas con él,en cambio la BD de la API tendrá los datos de todos los usuarios. 
 
 Primeramente se pensó un modelo teniendo en cuenta el buen diseño de una BD, cumpliendo con las normas y buenas prácticas para la ampliación del mismo de manera sencilla. Después de hacer un análisis se llegó a la conclusión de que las únicas operaciones de modificación de la BD de la API son crear  usuarios y mascotas, entonces se decidió diseñar unmodelo totalmente dependiente de estas dos entidades que no es el ideal, pero es bastante bueno y garantiza una coordinación correcta en los datos. 
 
-También se tienen unas tablas para guardar datos estáticos que son medicamentos,vacunas,enfermedades y alergias.Estas tabals serán persistentes en las BD de todos los dispositivos y no podrán ser modificados. 
+También se tienen unas tablas para guardar datos estáticos que son medicamentos, vacunas, enfermedades y alergias. Estas tabals serán persistentes en las BD de todos los dispositivos y no podrán ser modificados. 
 
 En la fig \ref{fig:model} se tiene una visualización del modelo.
 
@@ -90,7 +90,7 @@ En la fig \ref{fig:model} se tiene una visualización del modelo.
 \end{figure}	
 
 \subsection{Conclusiones}
-En este capítulo se explicó de manera general la API, se dió una breve reseña de la App móvil que consume de esta, se explicaron los casos de uso.Fueron presentadas las arquitecturas y los patrones de diseño utilizados en la implementación. Se hizo un análisis del modelo de datos utilizado  y el porque de su estructura.
+En este capítulo se explicó de manera general la API, se dió una breve reseña de la App móvil que consume de esta, se explicaron los casos de uso. Fueron presentadas las arquitecturas y los patrones de diseño utilizados en la implementación. Se hizo un análisis del modelo de datos utilizado  y el porque de su estructura.
 
   
 
