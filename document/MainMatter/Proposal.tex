@@ -9,7 +9,23 @@ La App cuenta con varias vistas para distintos tipos de consulta que se pueda ha
 Una de las cosas mas particularas que tiene este software es que está pensado para que casi todas sus funcionalidas se puedan hacer fuera de líena (offline), o sea, sin estar conectado a internet. Se pensó de esta forma para evitar la total dependencia de un servidor, ya que a algunas personas les puede ser un poco difícil el acceso a la red. Debido a esto se tuvieron que hacer algunas modificaciones en la estcutura del proyecto, para que el servidor pudiera hacer un proceso de sincronizacion, correcto y eficiente.Los datos de todos los usuarios estarán en el servidor, pero tambien cada uno tendrá sus datos particulares en una base de datos local en su móvil. 
 
 \section{Casos de Uso}
-El proceso de sincronización cuenta con las siguientes funcionalidades o casos de uso, que estas si requieren de conexión a internet :
+
+La primera acción de un usuario es el registro de su cuenta. Para llevar a cabo esta acción es obligatoria una conexión a internet, de esta forma se puede validar en el registro en el servidor. Esta validación incluye verificar el nivel de seguridad de la contraseña y que el número de teléfono actual no esté ya registrado en el sistema. En la figura \ref{fig:signup_view} podemos ver los datos necesarios para el registro.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm, height=10cm]{Graphics/signup_view.jpg}
+	\caption{Vista para registro de usuario.}
+	\label{fig:signup_view}
+\end{figure}
+Una vez que el usuario tiene una cuenta puede autenticarse a través de la vista que se ve en la figura \ref{fig:auth_view}. Desde el servidor se le asignará un token, el cual debe estar includo en el encabezado de todas las peticiones http posteriores para verificar la autorización de acceso a los endpoints de la API.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm, height=10cm]{Graphics/auth_view.jpg}
+	\caption{Vista para autenticación de usuario.}
+	\label{fig:auth_view}
+\end{figure}
+
+La tarea más importante de la API, es la de sincronizar los datos de los usuarios para que la información se mantenga fiable un consistentemente. Este proceso de sincronización cuenta con las siguientes funcionalidades o casos de uso, que si requieren de conexión a internet :
 \begin{itemize}
 	\item Subir datos al servidor :
 	
@@ -27,6 +43,13 @@ El proceso de sincronización cuenta con las siguientes funcionalidades o casos 
 	
 	Se le notificará al servidor que un usuario ha dejado de ser  encargado de una mascota. A la vez que un cliente deje de tener relacion con la mascota, se deberá tener encuenta para que no lleguen datos innecesarios a la hora de sincronizar   
 \end{itemize}
+Usualmente las actualizaciones son eventos que se ejecutan en la app cuando esta detecta que tiene conexión con el servidor. Pero existen en algunas vistas la posibilidad de solicitar un sincronización manual. En la figura \ref{fig:pets_view} se puede observar el botón de sincronización manual en la esquina superior izquieda.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm, height=10cm]{Graphics/pets_view.jpg}
+	\caption{Sincronización manual.}
+	\label{fig:pets_view}
+\end{figure}
 
   \section{Propuesta de Arquitectura}
   
@@ -79,7 +102,7 @@ Primeramente se pensó un modelo teniendo en cuenta el buen diseño de una BD, c
 
 También se tienen unas tablas para guardar datos estáticos que son medicamentos, vacunas, enfermedades y alergias. Estas tabals serán persistentes en las BD de todos los dispositivos y no podrán ser modificados. 
 
-En la fig \ref{fig:model} se tiene una visualización del modelo.
+En la figura \ref{fig:model} se tiene una visualización del modelo.
 
 \begin{figure}
 	\centering

@@ -49,9 +49,9 @@ Varias de las ventajas que podemos percibir de usar EF Core en el desarrollo de 
 
 \section{Autorización con Bearer Tokens:}
 \brackcite{Jones2012Oct}Los Bearer Tokens nacieron como parte del estandar rfc6750.  En el caso de nuestra aplicación, el cliente principal es una aplicación móvil. Una de las cuestiones importantes en este aspecto es como mantener la sesión iniciada por un usuario para que este no deba autenticarse constantemente para acceder a los recursos de la app. Haciendo uso de los Bearer Tokens podemos proporcionarle a la app cliente de forma segura a través del protocolo HTTPS un token de vida finita. Este token siendo incluido en el encabezado nos permite comprobar de forma segura que se trata de un cliente autorizado a acceder a un recurso específico. Este tipo de autorización es segura ya que la vida de dicho token es corta y esto disminuye las filtraciones de seguridad.
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width = 14cm]{Graphics/bearer_token.jpg}
+	\includegraphics[width = 10cm]{Graphics/bearer_token.jpg}
 	\caption{Encabezado de Bearer Toke. }
 	\label{fig:bearer_tokne}
 \end{figure}
@@ -83,15 +83,15 @@ La herramienta más utilizada para crear y administrar contenedores en la actual
 \subsection{Docker:}
 
 Es una herramienta para crear y gestionar contenedores. Con la ayuda de Docker los equipos de desarrollo pueden tener confianza en el producto que entregan. Al entregar software contenerizado sabemos que no necesitaremos de configuraciones engorrosas ni manejar errores de despliegue, ya que solo con  tener Docker instalado en la máquina que servirá como host, podemos ejecutar cualquier sistema contenerizado con esta herramienta. Otra de las ventajas evidentes de Docker son los dockerfile, lo cual nos permite escribir de manera secuencial los pasos a seguir para crear un container de un sistema y convertirlo en una imagen ejecutable de Docker. Cada proyecto tiene una forma específica de escribir el dockerfile, en el caso de nuestra implementación, la img \ref{fig:dockerfile} muestra la definición de este archivo:
-\newline
-\begin{figure}
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width = 14cm]{Graphics/dokerfile.jpg}
+	\includegraphics[width = 12cm, height=10cm]{Graphics/dokerfile.jpg}
 	\caption{Dokerfile para .NET web api. }
 	\label{fig:dockerfile}
 \end{figure}
 
-Como podemos ver hemos contenerizado nuestra aplicación en unos cuantos pasos y ya es un contenedor listo para ser ejecutado en cualquier máquina con Docker en ella.
+Como podemos ver hemos contenerizado nuestra aplicación en unos cuantos pasos y ya es un contenedor listo para ser ejecutado en cualquier máquina con una instalación de Docker.
 
 \subsection{Mogenius:}
 
