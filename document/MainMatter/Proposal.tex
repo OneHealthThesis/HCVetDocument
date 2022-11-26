@@ -1,12 +1,12 @@
 \chapter{Producto. Análisis Teórico-Computacional}\label{chapter:proposal}
 
-HCVet es una App móvil para gestionar y administrar historias clínicas de mascotas, donde los usuarios pueden tener registros de cada consulta que se ha hecho ,saber sus padecimientos y antecedentes de forma rápida y precisa. Esto es de mucha ayuda a la hora de atenderlas a su en las visitas al veterinario,y tambien para tener conciencia de los cuidados y la atención que se le debe dar.
+HCVet es una App móvil para gestionar y administrar historias clínicas de mascotas, donde los usuarios pueden tener registros de cada consulta que se ha hecho ,saber sus padecimientos y antecedentes de forma rápida y precisa. Esto es de mucha ayuda a la hora de atenderlas a su en las visitas al veterinario,y también para tener conciencia de los cuidados y la atención que se le debe dar.
 
 Se tiene una Application Programming Interface(API) para manejar la sincronizacion entre los clientes, el producto al que se refiere esta tesis es precisamente a la API. La primera vez que una persona va a usar la app debe registrarse, por tanto debe conectarse al servidor, este le asignará dos espacios para registrar dos mascotas, en caso de querer más deberá realizar una suscripción.
 
 La App cuenta con varias vistas para distintos tipos de consulta que se pueda hacer su mascota como patología, radiología, una visita médica regular, una cirugía, ect. Cada una cuenta con una serie de datos que se pedirán para llenar segun el tipo de consulta. Los usuarios también podrán asignar a otros como \textbf{encargados} de sus mascotas, para que estos también puedan registrar consultas sobre  las mascotas de otros dueños, por ejemplo un familiar o amigo.
 
-Una de las cosas mas particularas que tiene este software es que está pensado para que casi todas sus funcionalidas se puedan hacer fuera de líena (offline), o sea, sin estar conectado a internet. Se pensó de esta forma para evitar la total dependencia de un servidor, ya que a algunas personas les puede ser un poco difícil el acceso a la red. Debido a esto se tuvieron que hacer algunas modificaciones en la estcutura del proyecto, para que el servidor pudiera hacer un proceso de sincronizacion, correcto y eficiente.Los datos de todos los usuarios estarán en el servidor, pero tambien cada uno tendrá sus datos particulares en una base de datos local en su móvil. 
+Una de las cosas mas particularas que tiene este software es que está pensado para que casi todas sus funcionalidas se puedan hacer fuera de líena (offline), o sea, sin estar conectado a internet. Se pensó de esta forma para evitar la total dependencia de un servidor, ya que a algunas personas les puede ser un poco difícil el acceso a la red. Debido a esto se tuvieron que hacer algunas modificaciones en la estcutura del proyecto, para que el servidor pudiera hacer un proceso de sincronizacion, correcto y eficiente.Los datos de todos los usuarios estarán en el servidor, pero además cada uno tendrá sus datos particulares en una base de datos local en su móvil. 
 
 \section{Casos de Uso}
 
@@ -25,7 +25,7 @@ Una vez que el usuario tiene una cuenta puede autenticarse a través de la vista
 	\label{fig:auth_view}
 \end{figure}
 
-La tarea más importante de la API, es la de sincronizar los datos de los usuarios para que la información se mantenga fiable un consistentemente. Este proceso de sincronización cuenta con las siguientes funcionalidades o casos de uso, que si requieren de conexión a internet :
+La tarea más importante de la API, es la de sincronizar los datos de los usuarios para que la información se mantenga fiable y consistentemente. Este proceso de sincronización cuenta con las siguientes funcionalidades o casos de uso, que sí requieren de conexión a internet :
 \begin{itemize}
 	\item Subir datos al servidor :
 	
