@@ -92,17 +92,13 @@ Para la implementación de esta arquitectura la aplicación se dividirá en las 
 	\item \textbf{API}: Expone los end-points de la aplicación, que son las funcionalidades explicadas anteriormente, esta es la capa mas externa. Aquí se convierten los datos  a la forma más conveniente para cualquier marco de persistencia que se esté utilizando. Ningún código dentro de este círculo debería saber nada sobre la BD.
 	
 \end{itemize}
-
+\newpage
 
 \subsection{Modelo de Datos }
 
 Para mantener una correcta sincronización entre todos los usuarios y tener una persistencia de  los datos es necesario el empleo de una base de datos(BD). Ahora bien, como se dijo aneriormente cada cliente tendrá una base de datos local en su móvil con los datos necesarios para satisfacer todas las consultas relacionadas con él,en cambio la BD de la API tendrá los datos de todos los usuarios. 
 
-Primeramente se pensó un modelo teniendo en cuenta el buen diseño de una BD, cumpliendo con las normas y buenas prácticas para la ampliación del mismo de manera sencilla. Después de hacer un análisis se llegó a la conclusión de que las únicas operaciones de modificación de la BD de la API son crear  usuarios y mascotas, entonces se decidió diseñar unmodelo totalmente dependiente de estas dos entidades que no es el ideal, pero es bastante bueno y garantiza una coordinación correcta en los datos. 
-
-También se tienen unas tablas para guardar datos estáticos que son medicamentos, vacunas, enfermedades y alergias. Estas tabals serán persistentes en las BD de todos los dispositivos y no podrán ser modificados. 
-
-En la figura \ref{fig:model} se tiene una visualización del modelo.
+Primeramente se pensó un modelo teniendo en cuenta el buen diseño de una BD, cumpliendo con las normas y buenas prácticas para la ampliación del mismo de manera sencilla. Después de hacer un análisis se llegó a la conclusión de que las únicas operaciones de modificación de la BD de la API son crear  usuarios y mascotas, entonces se decidió diseñar un modelo totalmente dependiente de estas dos entidades que no es el ideal, pero es bastante bueno y garantiza una coordinación correcta en los datos. También se tienen unas tablas para guardar datos estáticos que son medicamentos, vacunas, enfermedades y alergias. Estas tabals serán persistentes en las BD de todos los dispositivos y no podrán ser modificados. En la figura \ref{fig:model} se tiene una visualización del modelo.
 
 \begin{figure}
 	\centering
@@ -111,6 +107,179 @@ En la figura \ref{fig:model} se tiene una visualización del modelo.
 	\label{fig:model}
 	
 \end{figure}	
+\newpage
+
+El modelo diseñado consta de \textbf{quince entidades} las cuales son descritas a continuación:
+\newline
+
+
+\textbf{User} es la tabla que contiene la información  de los usuarios, tiene más campos que hereda de Identity framework para cuestiones de seguridad, pero aqui solo se mostraran los necesarios para describir el modelo visto en la  fig \ref{fig:model}
+
+\begin{itemize}
+	\item	$Id$ ($PK$): Texto que identifica de forma única un usuario.
+	\item	$FirstName$: Texto utilizado para almacenar el nombre del usuario.
+	\item	$LastName$: Texto utilizado para almacenar el apellido del usuario.
+
+	\item	$Email$: Texto utilizado para almacenar la dirección de correo del usuario.
+	\item	$Password$: Texto utilizado para almacenar la contraseña del usuario
+	\item	$PhoneNumber$: Entero utilizado para almacenar el número de telefono del usuario.
+	\item	$LastSyncronized$: Fecha que almacena la última vez que el usuario se sincronizó con la bd, este dato juega un papel fundamental en la sincronización.
+	
+	
+\end{itemize}
+
+
+\textbf{Pets} es la tabla que contiene la información básica de las mascotas:
+
+\begin{itemize}
+	\item	$Id$ ($PK$): Valor entero que identifica de forma única una fila de esta tabla y por ende a una mascota.
+	\item	$IdPerson$  ($FK$\footnote{Llave foránea, $Foreign$ $Key$ por sus siglas en inglés.} ): Texto utilizado para identificar de forma única al dueño de la mascota.
+	\item	$Name$: Texto utilizado para almacenar el nombre de una mascota.
+	\item	$Birthdate$: Texto utilizado para almacenar la fecha de nacimiento de una mascota.
+	\item	$Species$: Texto que contiene la especie a la que pertenece una mascota.
+	\item	$Breed$: Texto que contiene la raza a la que pertenece una mascota.
+	\item	$Gender$: Texto que contiene el género de una mascota.
+	\item	$BloodType$: Texto que representa el tipo de sangre de una mascota.
+	
+\end{itemize}
+
+\textbf{Allergies}, \textbf{Drug}, \textbf{Vaccines} y \textbf{Disease} son las tablas que contienen las definiciones por defecto de las alergias, los medicamentos, las vacunas y las enfermedades respectivamente:
+
+\begin{itemize}
+	\item	$Id$ ($PK$\footnote{Llave primaria, $Primary$  $Key$ por sus siglas en inglés.} ): Valor entero que identifica de forma única cada una de las filas de estas tablas.
+	\item	$Name$: Texto utilizado para nombrar una alergia, un medicamento, una vacuna o una enfermedad dependiendo del caso.
+	
+\end{itemize}
+
+\textbf{MedicalVisit} es la tabla que contiene la información de las visitas médicas:
+
+\begin{itemize}
+	\item	$Id$ ($PK$): Texto que identifica de forma única una fila de esta tabla.
+	\item	$IdPet$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Pets$.
+	\item	$IdPerson$($FK$): Texto que identifica de forma única a la persona que insertó una visita médica en la aplicación.
+	\item	$Date$: Texto utilizado para almacenar la fecha de una visita médica.
+	\item	$Place$: Texto que representa el lugar en el que se realizó una visita médica.
+	\item	$Doctor$: Texto que contiene el nombre del médico o especialista que realizo una visita médica.
+	\item	$Notes$: Texto utilizado para almacenar notas extras sobre una visita médica.
+	\item	$CreateOnDb$ 
+	Fecha para identificar cuando fue generado este dato en la BD
+\end{itemize}
+
+\textbf{LabTests} es la tabla que se utiliza para almacenar las pruebas de laboratorio:
+
+\begin{itemize}
+	\item	$Id$ ($PK$): Texto que identifica de forma única una fila de esta tabla.
+	\item	$IdPet$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Pets$.
+	\item	$IdPerson$: Texto que identifica de forma única a la persona que insertó una prueba de laboratorio en la aplicación.
+	\item	$Date$: Texto utilizado para almacenar la fecha en la que se realizó una prueba de laboratorio.
+	\item	$Place$: Texto en el que se guarda el lugar en el cual se realizó una prueba de laboratorio.
+	\item	$Doctor$: Texto que almacena el nombre del especialista que realizó una prueba de laboratorio.
+	\item	$Test$: Texto que identifica el test realizado en una prueba de laboratorio.
+	\item	$Result$: Texto que almacena el resultado de una prueba de laboratorio.
+	\item	$Normal$ : Valor entero que representa si una prueba de laboratorio fue normal o no.
+	\item	$Notes$: Texto utilizado para almacenar notas extras sobre una prueba de laboratorio.
+	\item	$CreateOnDb$ 
+Fecha para identificar cuando fue generado este dato en la BD
+\end{itemize}
+
+\textbf{Prescription} es la tabla que almacena las prescripciones:
+
+\begin{itemize}
+	\item	$Id$ ($PK$): Texto que identifica de forma única una fila de esta tabla.
+	\item	$IdPet$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Pets$.
+	\item	$IdMedicament$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Drug$.
+	\item	$IdPerson$: Texto que identifica de forma única a la persona que insertó una prescripción en la aplicación.
+	\item	$Dose$: Texto que representa la dosis del medicamento recetado en una prescripción.
+	\item	$Date$: Texto que almacena la fecha en la que se realizó una prescripción.
+	\item	$Place$: Texto que representa el lugar donde se realizó una prescripción.
+	\item	$Doctor$: Texto que contiene el nombre del especialista que realizó una prescripción.
+	\item	$Notes$: Texto utilizado para almacenar notas extras sobre una prescripción.
+		\item	$CreateOnDb$ 
+	Fecha para identificar cuando fue generado este dato en la BD
+	
+\end{itemize}
+
+\textbf{AllergyConsultation} es la tabla que almacena las alergias de las mascotas.
+\begin{itemize}
+	
+	
+	\item	$Id$ ($PK$): Texto que identifica de forma única una fila de esta tabla.
+	\item	$IdPet$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Pets$.
+	\item	$IdAllergy$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Allergies$.
+	\item	$IdPerson$: Texto que identifica de forma única a la persona que insertó una alergia en la aplicación.
+	\item	$Date$: Texto utilizado para almacenar la fecha en la que se detectó una alergia.
+	\item	$Notes$: Texto utilizado para almacenar notas extras sobre la detección de una alergia.
+	\item	$CreateOnDb$ 
+Fecha para identificar cuando fue generado este dato en la BD
+\end{itemize}
+
+
+\textbf{Condition} es la tabla para almacenar las condiciones o enfermedades que tienen las mascotas:
+
+\begin{itemize}
+	\item	$Id$ ($PK$): Texto que identifica de forma única una fila de esta tabla.
+	\item	$IdPet$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Pets$.
+	\item	$IdDisease$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Disease$.
+	\item	$IdPerson$: Texto que identifica de forma única a la persona que insertó una condición en la aplicación.
+	\item	$Name$: Texto utilizado para guardar el nombre del diagnóstico de una condición.
+	\item	$Date$: Texto utilizado para almacenar la fecha en la que se diagnosticó una condición.
+	\item	$Place$: Texto en el que se guarda el lugar en el cual se diagnosticó una condición.
+	\item	$Doctor$: Texto que almacena el nombre del especialista que diagnosticó una condición.
+	\item	$Notes$: Texto utilizado para almacenar notas extras sobre el diagnóstico de una condición.
+		\item	$CreateOnDb$ 
+	Fecha para identificar cuando fue generado este dato en la BD
+\end{itemize}
+
+\textbf{VaccineConsultation} es la tabla que almacena las vacunas de las mascotas.
+
+\begin{itemize}
+	\item	$Id$ ($PK$): Texto que identifica de forma única una fila de esta tabla.
+	\item	$IdPet$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Pets$.
+	\item	$IdVaccine$ ($FK$): Valor entero que identifica de forma única una fila de la tabla $Vaccines$.
+	\item	$IdPerson$: Texto que identifica de forma única a la persona que insertó una vacuna en la aplicación.
+	\item	$Date$: Texto utilizado para almacenar la fecha en la que se realizó una vacuna.
+	\item	$Place$: Texto que representa el lugar donde se realizó una vacuna.
+	\item	$Doctor$: Texto que contiene el nombre del especialista que realizó una vacuna.
+	\item	$Notes$: Texto utilizado para almacenar notas extras sobre la realización de una vacuna.
+		\item	$CreateOnDb$ 
+	Fecha para identificar cuando fue generado este dato en la BD
+\end{itemize}
+
+
+\textbf{Radiology}, \textbf{Pathology} y \textbf{Surgery} son las tablas utilizadas para guardar las radiologías, las patologías y las cirugías respectivamente.
+
+
+\begin{itemize}
+	\item	$Id$ ($PK$): Texto que identifica de forma única una fila de estas tablas.
+	\item	$IdPet$ ($FK$): Valor entero que identifica de forma única una fila de la tabla Pets.
+	\item	$IdPerson$: Texto que identifica de forma única a la persona que insertó en la aplicación una radiología, una patología o una cirugía en dependencia del caso.
+	\item	$Date$: Texto utilizado para almacenar la fecha de una radiología, una patología o una cirugía en dependencia del caso.
+	\item	$Title$: Texto utilizado para guardar el título de una radiología, una patología o una cirugía en dependencia del caso.
+	\item	$Result$: Texto que contiene el resultado de una radiología, una patología o una cirugía en dependencia del caso.
+	\item	$Place$: Texto que representa el lugar en el que se realizó una radiología, una patología o una cirugía en dependencia del caso.
+	\item	$Doctor$: Texto que contiene el nombre del médico o especialista que realizo una radiología, una patología o una cirugía en dependencia del caso.
+	\item	$Notes$: Texto utilizado para almacenar notas extras sobre una radiología, una patología o una cirugía en dependencia del caso.
+		\item	$CreateOnDb$ 
+	Fecha para identificar cuando fue generado este dato en la BD
+\end{itemize}
+
+
+\textbf{Notes} es la tabla que contiene notas extras sobre las mascotas.
+
+
+\begin{itemize}
+	\item	$Id$ ($PK$): Texto que identifica de forma única una fila de esta tabla.
+	\item	$IdPet$ ($FK$): Valor entero que identifica de forma única una fila de la tabla Pets.
+	\item	$IdPerson$: Texto que identifica de forma única a la persona que insertó una nota extra en la aplicación.
+	\item	$Title$: Texto que representa el título de una nota extra.
+	\item	$Notes$: Texto utilizado para almacenar una nota extra.
+	\item	$Date$: Texto utilizado para almacenar la fecha de una nota extra.
+	\item	$Place$: Texto en el que se guarda el lugar en el cual se escribió una nota extra.
+	\item	$Doctor$: Texto que almacena el nombre del especialista que escribió una nota extra.
+	\item	$CreateOnDb$ 
+Fecha para identificar cuando fue generado este dato en la BD
+\end{itemize}
+
 
 \subsection{Conclusiones}
 En este capítulo se explicó de manera general la API, se dió una breve reseña de la App móvil que consume de esta, se explicaron los casos de uso. Fueron presentadas las arquitecturas y los patrones de diseño utilizados en la implementación. Se hizo un análisis del modelo de datos utilizado  y el porque de su estructura.
