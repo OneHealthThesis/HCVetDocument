@@ -96,3 +96,160 @@ Como podemos ver hemos contenerizado nuestra aplicación en unos cuantos pasos y
 \subsection{Mogenius:}
 
 Mogenius es una herramienta web que automatiza todo el proceso de despliegue y de host de una aplicación. Tiene además la funcionalidad de crear automáticamente un pipeline de CI/CD(Continue Integration/ Continue Deployment), de esta forma nuestra aplicación puede ser fácilmente actualizada sin necesidad de llevar a cabo repetidamente el engorroso desplegar la aplicación. La única configuración necesaria es proveer un archivo dockerfile el cual contenga las instrucciones para contenerizar nuestra aplicación. Este servicio está conectado a una rama especifica del repositorio del proyecto en Gitub, lo que significa que cada vez que sea actualizada la rama principal, la aplicación será desplegada automáticamente sin necesidad de interferir en el proceso. Otra de las ventajas de que el servicio esté conectado a Github, es que podemos controlar las versiones de la aplicación a través de comandos de Git.
+
+
+\section{Detalles de implementación:}
+
+\brackcite{marcotte2020atypical}En la ingeniería de software existen muchos conceptos de suma importancia para el desarrollo de soluciones robustas y flexibles. \textbf{SOLID} es el acrónimo atribuido a una serie de principios que extienden los conceptos básicos de programación orientada a objetos: abstracción, encapsulación, herencia y polimorfismo. Es importante destacar que no hablamos de reglas y una de las peores formas de aplicarlos es no adaptarlos a nuestro proyecto, o usarlos sin calcular si el beneficio del resultado de hacerlo. La correcta implementación del software marca la diferencia de un sistema que puede fácilmente actualizarse y mantenerse a la altura de los estándares del mercado, o uno que con el tiempo es simplemente muy costoso de mantener. Muchas son las formas de cumplir con las buenas prácticas del desarrollo de software. En este capítulo abordaremos algunas de las usadas por nosotros en el proceso de diseño y desarrollo de nuestra propuesta de producto.
+
+\subsection{Datos:}
+
+\brackcite{medina2017web}La capa de datos encargada de la persistencia está presente en cada proyecto que necesite persistir información de la aplicación. En la mayoría de los programas los datos son guardados en una base de datos. Al hablar de la capa de datos, dos de lo patrones de diseño más comunes son \textbf{Unit of Work} y  \textbf{Repository}.
+\newline
+
+El patrón Repository tiene como objetivo permitir lanzar consultas a la base de datos en forma de orientada a objetos. Entity Framework Core representa este concepto a través de \lstinline{DbSet<T>}  y permite filtrar estas consultas usando \textbf{LINQ} y la interfaz \lstinline{IQueryable<T>}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 12cm, height=10cm]{Graphics/ef_core_repository_pattern.jpg}
+	\caption{DbSet<T> para patrón Repository con EF Core.}
+	\label{fig:EfCoreRepository}
+\end{figure}
+
+Es usual confundir el patrón de diseño \textbf{Repository} con el patrón \textbf{Table Data Gateaway}. Este último se usa para crear una abstracción del acceso a las tablas de la base de datos de una forma natural, permitiendo el uso de objetos más personalizados para interactuar con los datos. En la figura \ref{fig:tableDataGateaway} se puede ver nuestra implementación de este patrón. \brackcite{medina2017web}El \textbf{Table Data Gateaway} provee una encapsulación que sirve como puerta de enlace para acceder a los datos. Ofrece flexibilidad e independencia a la persistencia de la información ya que el patrón permite una total abstracción de las consultas SQL.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 12cm, height=10cm]{Graphics/table_data_gateaway_pattern.jpg}
+	\caption{Patrón de diseño Table Data Gateaway.}
+	\label{fig:tableDataGateaway}
+\end{figure}
+
+\brackcite{marcotte2020atypical}Otro de los patrones importantes en el uso de datos, en especial desde una base de datos es \textbf{Unit of Work}. Este patrón permite seguir los cambios hechos en las entidades a las que accedemos en, agrupando además los cambios que deben ser enviados a la base de datos. En otras palabras, nos permite guardar y seguir en forma de objeto todas las transacciones que deben llevarse a cabo en la base de datos. La importancia de este patrón viene dada porque el acceso a la base de datos es siempre costoso y minimizar la cantidad de llamados que le hacemos es importante para el rendimiento de cualquier aplicación. La forma en la que este patrón funcione en Entity Framework Core es la siguiente:
+
+\begin{enumerate}
+	\item EF consulta la base de datos.
+    \item Guarda las entidades devueltas en caché.
+    \item Comienza a seguir los cambios hechos a estas entidades.
+    \item Nos devuelve las entidades solicitadas en nuestra consulta.
+    
+\end{enumerate}
+
+
+De esta forma EF crea una contexto para las entidades que sigue, guardando en este todas las transacciones que debe efectuar para aplicar los cambios detectados. Después de hacer cambios y crear transacciones sobre las entidades, haciendo un llamado al método \lstinline{SaveChanges()} de \lstinline{DbSet<T>} le decimos a EF Core que comience a ejecutar todas las transacciones detectadas. EF ejecuta esta acción de forma muy eficiente, ya que como mencionamos anteriormente realizará un solo llamado a la base de datos para aumentar la eficiencia de la comunicación con esta. Otras de las ventajas de este patrón es el manejo de errores, si alguna transacción falla entonces ninguna es aplicada, esto evita operaciones incompleta sobre la base de datos y la creación de datos inconsistentes. El siguiente método de nuestra aplicación permite ver un ejemplo donde se crean varias transacciones y se aplican al final guardando los cambios en el contexto.
+
+\begin{lstlisting}
+    public async Task SynchronizeSet(SynchroDataDTO synchroData, CancellationToken cancellationToken)
+        {
+            foreach (var entity in synchroData.Allergies)
+            {
+                Allergies temp = this._mapper.Map<Allergies>(entity);
+                _context.Allergies.Add(temp);
+            }
+
+            foreach (var allergyCons in synchroData.AllergyConsultation)
+            {
+                AllergyConsultation temp = this._mapper.Map<AllergyConsultation>(allergyCons);
+                _context.AllergyConsultations.Add(temp);
+            }
+
+            foreach (var condition in synchroData.Condition)
+            {
+                Condition temp = this._mapper.Map<Condition>(condition);
+                _context.Condition.Add(temp);
+            }
+
+            foreach (var disease in synchroData.Disease)
+            {
+                Disease temp = this._mapper.Map<Disease>(disease);
+                _context.Diseases.Add(temp);
+            }
+
+            foreach (var drug in synchroData.Drug)
+            {
+                Drug temp = this._mapper.Map<Drug>(drug);
+                _context.Drugs.Add(temp);
+            }
+
+            foreach (var labTest in synchroData.LabTest)
+            {
+                LabTest temp = this._mapper.Map<LabTest>(labTest);
+                _context.LabTests.Add(temp);
+            }
+
+            foreach (var medicalVisit in synchroData.MedicalVisit)
+            {
+                MedicalVisit temp = this._mapper.Map<MedicalVisit>(medicalVisit);
+                _context.MedicalVisits.Add(temp);
+            }
+
+            foreach (var note in synchroData.Note)
+            {
+                Note temp = this._mapper.Map<Note>(note);
+                _context.Notes.Add(temp);
+            }
+
+            foreach (var pathology in synchroData.Pathology)
+            {
+                Pathology temp = this._mapper.Map<Pathology>(pathology);
+                _context.Pathologies.Add(temp);
+            }
+
+            foreach (var radiology in synchroData.Radiology) 
+            {
+                Radiology temp = this._mapper.Map<Radiology>(radiology);
+                _context.Radiologies.Add(temp);
+            }
+
+            foreach (var surgeries in synchroData.Surgeries) 
+            {
+                Surgeries temp = this._mapper.Map<Surgeries>(surgeries);
+                _context.Surgeries.Add(temp);
+            }
+
+            foreach (var prescriptionDrug in synchroData.PrescriptionDrug)
+            {
+                PrescriptionDrug temp = this._mapper.Map<PrescriptionDrug>(prescriptionDrug);
+                _context.PrescriptionDrug.Add(temp);
+            }
+
+            foreach (var vaccine in synchroData.Vaccines)
+            {
+                Vaccines temp = this._mapper.Map<Vaccines>(vaccine);
+                _context.Vaccines.Add(temp);
+            }
+
+            foreach (var vaccineConsultation in synchroData.VaccineConsultation)
+            {
+                VaccineConsultation temp = this._mapper.Map<VaccineConsultation>(vaccineConsultation);
+                _context.VaccineConsultations.Add(temp);
+            }
+
+          await _context.SaveChangesAsync(cancellationToken);
+        }
+\end{lstlisting}
+
+\subsection{Inyección de Dependencia:}
+\brackcite{marcotte2020atypical}La inyección de dependencias es una de las formas de implementar el principio de inversión de control de \textbf{SOLID}, es la \textbf{D} en este acrónimo. Podemos entender el principio de inversión de control como una versión más amplia de la inyección de dependencias. La idea principal es dejar la creación de dependencias al punto de entrada del programa. De esta forma el manejo de dependencias es hecho por un contenedor de inversión de control y los desarrolladores pueden abstraerse de esto cuando realizan sus implementaciones. 
+\newline
+En \textbf{.NET} tenemos la clase \lstinline{WebApplicationBuilder}, esta se encarga, entre otras cosas, de registrar las dependencias que usaremos en nuestra aplicación para que estas puedan ser resueltas a medida que son demandadas. A continuación se ve un ejemplo de como registrar una dependencia y seguido el constructor de una clase que usa esta dependencia abstrayéndose de la forma de obtenerla.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 12cm]{Graphics/di_register_example.jpg}
+	\caption{Registro de Inyección de Dependencia en .NET.}
+	\label{fig:di_register}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 12cm]{Graphics/dep_inj_example.jpg}
+	\caption{Uso de Inyección de Dependencia en un constructor en .NET.}
+	\label{fig:di_use_example}
+\end{figure}
+
+Existen gran variedad de patrones de diseño y principios de arquitectura que son usados en una aplicación, todos de suma importancia cuando se quiere entregar software de buena calidad. En este pequeño apartado hemos abordados solo algunas que consideramos tienen un gran impacto tanto en la calidad del proceso de desarrollo como en la del producto final. Podemos asegurar que es perceptible la fluidez del desarrollo de software cuando se aplica estos principios y patrones. También creemos necesario hacer hincapié en la importancia de adaptarlos a nuestro producto. Estos patrones y principios por si solos, sin análisis de su uso en nuestro producto pueden resultar en un problema considerablemente grande en su diseño e implementación.
+
+\section{Conlusión:}
+En este capitulo hacemos un análisis de las tecnologías y herramientas usadas para el desarrollo de nuestra aplicación. Principalmente podemos destacar el papel protagonista de las librerías de acceso a datos. Estas tecnologías han demostrado ser fundamentales tanto para el desarrollo correcto de aplicaciones como para la entrega de soluciones robustas y eficientes. También se analizó el impacto que tiene una estrategia de despliegue cómoda y segura del software. Además se pudo apreciar las ventajas que nos da la contenerización de software y lo fácil que puede ser integrarlo en nuestras estrategias de desarrollo de software.  Cerramos del capítulo con una observación sobre elementos de ingeniería que era necesario destacar por su impacto positivo en el logro de un software robusto.
