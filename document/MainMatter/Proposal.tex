@@ -2,11 +2,11 @@
 
 HCVet es una App móvil para gestionar y administrar historias clínicas de mascotas, donde los usuarios pueden tener registros de cada consulta que se ha hecho ,saber sus padecimientos y antecedentes de forma rápida y precisa. Esto es de mucha ayuda a la hora de atenderlas a su en las visitas al veterinario,y también para tener conciencia de los cuidados y la atención que se le debe dar.
 
-Se tiene una Application Programming Interface(API) para manejar la sincronizacion entre los clientes, el producto al que se refiere esta tesis es precisamente a la API. La primera vez que una persona va a usar la app debe registrarse, por tanto debe conectarse al servidor, este le asignará dos espacios para registrar dos mascotas, en caso de querer más deberá realizar una suscripción.
+Se tiene una Application Programming Interface(API) para manejar la sincronización entre los clientes, el producto al que se refiere esta tesis es precisamente a la API. La primera vez que una persona va a usar la app debe registrarse, por tanto debe conectarse al servidor, este le asignará dos espacios para registrar dos mascotas, en caso de querer más deberá realizar una suscripción.
 
 La App cuenta con varias vistas para distintos tipos de consulta que se pueda hacer su mascota como patología, radiología, una visita médica regular, una cirugía, ect. Cada una cuenta con una serie de datos que se pedirán para llenar segun el tipo de consulta. Los usuarios también podrán asignar a otros como \textbf{encargados} de sus mascotas, para que estos también puedan registrar consultas sobre  las mascotas de otros dueños, por ejemplo un familiar o amigo.
 
-Una de las cosas mas particularas que tiene este software es que está pensado para que casi todas sus funcionalidas se puedan hacer fuera de líena (offline), o sea, sin estar conectado a internet. Se pensó de esta forma para evitar la total dependencia de un servidor, ya que a algunas personas les puede ser un poco difícil el acceso a la red. Debido a esto se tuvieron que hacer algunas modificaciones en la estcutura del proyecto, para que el servidor pudiera hacer un proceso de sincronizacion, correcto y eficiente.Los datos de todos los usuarios estarán en el servidor, pero además cada uno tendrá sus datos particulares en una base de datos local en su móvil. 
+Una de las cosas mas particularas que tiene este software es que está pensado para que casi todas sus funcionalidas se puedan hacer fuera de líena (offline), o sea, sin estar conectado a internet. Se pensó de esta forma para evitar la total dependencia de un servidor, ya que a algunas personas les puede ser un poco difícil el acceso a la red. Debido a esto se tuvieron que hacer algunas modificaciones en la estcutura del proyecto, para que el servidor pudiera hacer un proceso de sincronización, correcto y eficiente.Los datos de todos los usuarios estarán en el servidor, pero además cada uno tendrá sus datos particulares en una base de datos local en su móvil. 
 
 \section{Casos de Uso}
 
@@ -29,19 +29,19 @@ La tarea más importante de la API, es la de sincronizar los datos de los usuari
 \begin{itemize}
 	\item Subir datos al servidor :
 	
-	Los nuevos datos generados se subirán al servidor. Esto se realizo para tener una centralizacion de los datos, y de alguna forma una copia de seguridad de los mismos, en caso de perdida. También sirve para el proceso de sincronización en usuarios que tengan masctas en común, al tener esos datos en el servidor, proveerá esos datos a los usuarios que le sean requeridos.
+	Los nuevos datos generados se subirán al servidor. Esto se realizó para tener una centralización de los datos, y de alguna forma una copia de seguridad de los mismos, en caso de perdida. También sirve para el proceso de sincronización en usuarios que tengan masctas en común, al tener esos datos en el servidor, proveerá esos datos a los usuarios que le sean requeridos.
 	
 	\item Bajar datos del Servidor :
 	
-	Todos los datos que hayan sido subidos al servidor, de todas las mascotas que el usuario sea dueño serán agregados a la base de datos local. Está funcion mantiene actualizados los datos de cada usuario, por ahora solo agrega daatos, en un futuro se pudiara mejorar esta acción para que también actualice y elimine datos, que este proceso puede ser bastante complejo. 
+	Todos los datos que hayan sido subidos al servidor, de todas las mascotas que el usuario sea dueño serán agregados a la base de datos local. Está función mantiene actualizados los datos de cada usuario, por ahora solo agrega daatos, en un futuro se pudiara mejorar esta acción para que también actualice y elimine datos, que este proceso puede ser bastante complejo. 
 	
 	\item Asignar encargado :
 	
-	Se le notificará al servidor que un usuario ha sido asignado como encargado de una nueva mascota. Esta funcion es necesaria, para que el servidor pueda proveer de los nuevos registros tanto a los dueños como a los encargados.
+	Se le notificará al servidor que un usuario ha sido asignado como encargado de una nueva mascota. Esta función es necesaria, para que el servidor pueda proveer de los nuevos registros tanto a los dueños como a los encargados.
 	
 		\item Desasignar encargado :
 	
-	Se le notificará al servidor que un usuario ha dejado de ser  encargado de una mascota. A la vez que un cliente deje de tener relacion con la mascota, se deberá tener encuenta para que no lleguen datos innecesarios a la hora de sincronizar   
+	Se le notificará al servidor que un usuario ha dejado de ser  encargado de una mascota. A la vez que un cliente deje de tener relación con la mascota, se deberá tener encuentra para que no lleguen datos innecesarios a la hora de sincronizar   
 \end{itemize}
 Usualmente las actualizaciones son eventos que se ejecutan en la app cuando esta detecta que tiene conexión con el servidor. Pero existen en algunas vistas la posibilidad de solicitar un sincronización manual. En la figura \ref{fig:pets_view} se puede observar el botón de sincronización manual en la esquina superior izquieda.
 \begin{figure}[H]
