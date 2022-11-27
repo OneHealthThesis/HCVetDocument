@@ -1,12 +1,12 @@
 \chapter{Producto. Análisis Teórico-Computacional}\label{chapter:proposal}
 
-HCVet es una App móvil para gestionar y administrar historias clínicas de mascotas, donde los usuarios pueden tener registros de cada consulta que se ha hecho ,saber sus padecimientos y antecedentes de forma rápida y precisa. Esto es de mucha ayuda a la hora de atenderlas a su en las visitas al veterinario,y también para tener conciencia de los cuidados y la atención que se le debe dar.
+HCVet es una App móvil para gestionar y administrar historias clínicas de mascotas, donde los usuarios pueden tener registros de cada consulta que se ha hecho ,saber sus padecimientos y antecedentes de forma rápida y precisa. Esto es de mucha ayuda a la hora de atenderlas en las visitas al veterinario,y también para tener conciencia de los cuidados y la atención que se le debe dar.
 
 Se tiene una Application Programming Interface(API) para manejar la sincronización entre los clientes, el producto al que se refiere esta tesis es precisamente a la API. La primera vez que una persona va a usar la app debe registrarse, por tanto debe conectarse al servidor, este le asignará dos espacios para registrar dos mascotas, en caso de querer más deberá realizar una suscripción.
 
-La App cuenta con varias vistas para distintos tipos de consulta que se pueda hacer su mascota como patología, radiología, una visita médica regular, una cirugía, ect. Cada una cuenta con una serie de datos que se pedirán para llenar segun el tipo de consulta. Los usuarios también podrán asignar a otros como \textbf{encargados} de sus mascotas, para que estos también puedan registrar consultas sobre  las mascotas de otros dueños, por ejemplo un familiar o amigo.
+La App cuenta con varias vistas para distintos tipos de consulta que se pueda hacer su mascota como patología, radiología, una visita médica regular, una cirugía, etc. Cada una cuenta con una serie de datos que se pedirán para llenar según el tipo de consulta. Los usuarios también podrán asignar a otros como \textbf{encargados} de sus mascotas, para que estos también puedan registrar consultas sobre  las mascotas de otros dueños, por ejemplo un familiar o amigo.
 
-Una de las cosas mas particularas que tiene este software es que está pensado para que casi todas sus funcionalidas se puedan hacer fuera de líena (offline), o sea, sin estar conectado a internet. Se pensó de esta forma para evitar la total dependencia de un servidor, ya que a algunas personas les puede ser un poco difícil el acceso a la red. Debido a esto se tuvieron que hacer algunas modificaciones en la estcutura del proyecto, para que el servidor pudiera hacer un proceso de sincronización, correcto y eficiente.Los datos de todos los usuarios estarán en el servidor, pero además cada uno tendrá sus datos particulares en una base de datos local en su móvil. 
+Una de las cosas más particulares que tiene este software es que está pensado para que casi todas sus funcionalides se pueden hacer fuera de línea (offline), o sea, sin estar conectado a internet. Se pensó de esta forma para evitar la total dependencia de un servidor, ya que a algunas personas les puede ser un poco difícil el acceso a la red. Debido a esto se tuvieron que hacer algunas modificaciones en la estructura del proyecto, para que el servidor pudiera hacer un proceso de sincronización, correcto y eficiente.Los datos de todos los usuarios estarán en el servidor, pero además cada uno tendrá sus datos particulares en una base de datos local en su móvil. 
 
 \section{Casos de Uso}
 
@@ -17,7 +17,7 @@ La primera acción de un usuario es el registro de su cuenta. Para llevar a cabo
 	\caption{Vista para registro de usuario.}
 	\label{fig:signup_view}
 \end{figure}
-Una vez que el usuario tiene una cuenta puede autenticarse a través de la vista que se ve en la figura \ref{fig:auth_view}. Desde el servidor se le asignará un token, el cual debe estar includo en el encabezado de todas las peticiones http posteriores para verificar la autorización de acceso a los endpoints de la API.
+Una vez que el usuario tiene una cuenta puede autenticarse a través de la vista que se ve en la figura \ref{fig:auth_view}. Desde el servidor se le asignará un token, el cual debe estar incluido en el encabezado de todas las peticiones http posteriores para verificar la autorización de acceso a los endpoints de la API.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=7cm, height=10cm]{Graphics/auth_view.jpg}
@@ -29,11 +29,11 @@ La tarea más importante de la API, es la de sincronizar los datos de los usuari
 \begin{itemize}
 	\item Subir datos al servidor :
 	
-	Los nuevos datos generados se subirán al servidor. Esto se realizó para tener una centralización de los datos, y de alguna forma una copia de seguridad de los mismos, en caso de perdida. También sirve para el proceso de sincronización en usuarios que tengan masctas en común, al tener esos datos en el servidor, proveerá esos datos a los usuarios que le sean requeridos.
+	Los nuevos datos generados se subirán al servidor. Esto se realizó para tener una centralización de los datos, y de alguna forma una copia de seguridad de los mismos, en caso de pérdida. También sirve para el proceso de sincronización en usuarios que tengan mascotas en común, al tener esos datos en el servidor, proveerá esos datos a los usuarios que le sean requeridos.
 	
 	\item Bajar datos del Servidor :
 	
-	Todos los datos que hayan sido subidos al servidor, de todas las mascotas que el usuario sea dueño serán agregados a la base de datos local. Está función mantiene actualizados los datos de cada usuario, por ahora solo agrega daatos, en un futuro se pudiara mejorar esta acción para que también actualice y elimine datos, que este proceso puede ser bastante complejo. 
+	Todos los datos que hayan sido subidos al servidor, de todas las mascotas que el usuario sea dueño serán agregados a la base de datos local. Está función mantiene actualizados los datos de cada usuario, por ahora solo agrega datos, en un futuro se pudiera mejorar esta acción para que también actualice y elimine datos, que este proceso puede ser bastante complejo. 
 	
 	\item Asignar encargado :
 	
@@ -41,9 +41,9 @@ La tarea más importante de la API, es la de sincronizar los datos de los usuari
 	
 		\item Desasignar encargado :
 	
-	Se le notificará al servidor que un usuario ha dejado de ser  encargado de una mascota. A la vez que un cliente deje de tener relación con la mascota, se deberá tener encuentra para que no lleguen datos innecesarios a la hora de sincronizar   
+	Se le notificará al servidor que un usuario ha dejado de ser  encargado de una mascota. A la vez que un cliente deje de tener relación con la mascota, se deberá tener en cuenta para que no lleguen datos innecesarios a la hora de sincronizar   
 \end{itemize}
-Usualmente las actualizaciones son eventos que se ejecutan en la app cuando esta detecta que tiene conexión con el servidor. Pero existen en algunas vistas la posibilidad de solicitar un sincronización manual. En la figura \ref{fig:pets_view} se puede observar el botón de sincronización manual en la esquina superior izquieda.
+Usualmente las actualizaciones son eventos que se ejecutan en la app cuando esta detecta que tiene conexión con el servidor. Pero existen en algunas vistas la posibilidad de solicitar una sincronización manual. En la figura \ref{fig:pets_view} se puede observar el botón de sincronización manual en la esquina superior izquierda.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=7cm, height=10cm]{Graphics/pets_view.jpg}
@@ -87,9 +87,9 @@ Para la implementación de esta arquitectura la aplicación se dividirá en las 
 	\item \textbf{Core}: La capa más interna, no es susceptible a cambios en otras capas, es totalmente independiente. Esta contiene la lógica de negocio, los objetos de uso general en la aplicación(entidades),el mapeo de las entidades, definición de interfaces a implementar tanto en esta capa como en las que la envuelven.
 	
 	\item \textbf{Infrastructure}: : La capa referente a datos, contiene las funciones correspondientes al acceso a base de datos(BD). Se subordina a las peticiones de la capa de dominio por medio de los
-	Repositorios que implementan como acceder a los datos.Contiene los servicios y repositorios para proever datos a las capas más externas.
+	Repositorios que implementan cómo acceder a los datos.Contiene los servicios y repositorios para proveer datos a las capas más externas.
 	
-	\item \textbf{API}: Expone los end-points de la aplicación, que son las funcionalidades explicadas anteriormente, esta es la capa mas externa. Aquí se convierten los datos  a la forma más conveniente para cualquier marco de persistencia que se esté utilizando. Ningún código dentro de este círculo debería saber nada sobre la BD.
+	\item \textbf{API}: Expone los end-points de la aplicación, que son las funcionalidades explicadas anteriormente, esta es la capa más externa. Aquí se convierten los datos  en la forma más conveniente para cualquier marco de persistencia que se esté utilizando. Ningún código dentro de este círculo debería saber nada sobre la BD.
 	
 \end{itemize}
 \newpage
@@ -98,7 +98,7 @@ Para la implementación de esta arquitectura la aplicación se dividirá en las 
 
 Para mantener una correcta sincronización entre todos los usuarios y tener una persistencia de  los datos es necesario el empleo de una base de datos(BD). Ahora bien, como se dijo aneriormente cada cliente tendrá una base de datos local en su móvil con los datos necesarios para satisfacer todas las consultas relacionadas con él,en cambio la BD de la API tendrá los datos de todos los usuarios. 
 
-Primeramente se pensó un modelo teniendo en cuenta el buen diseño de una BD, cumpliendo con las normas y buenas prácticas para la ampliación del mismo de manera sencilla. Después de hacer un análisis se llegó a la conclusión de que las únicas operaciones de modificación de la BD de la API son crear  usuarios y mascotas, entonces se decidió diseñar un modelo totalmente dependiente de estas dos entidades que no es el ideal, pero es bastante bueno y garantiza una coordinación correcta en los datos. También se tienen unas tablas para guardar datos estáticos que son medicamentos, vacunas, enfermedades y alergias. Estas tabals serán persistentes en las BD de todos los dispositivos y no podrán ser modificados. En la figura \ref{fig:model} se tiene una visualización del modelo.
+Primeramente se pensó un modelo teniendo en cuenta el buen diseño de una BD, cumpliendo con las normas y buenas prácticas para la ampliación del mismo de manera sencilla. Después de hacer un análisis se llegó a la conclusión de que las únicas operaciones de modificación de la BD de la API son crear  usuarios y mascotas, entonces se decidió diseñar un modelo totalmente dependiente de estas dos entidades que no es el ideal, pero es bastante bueno y garantiza una coordinación correcta en los datos. También se tienen unas tablas para guardar datos estáticos que son medicamentos, vacunas, enfermedades y alergias. Estas tablas serán persistentes en las BD de todos los dispositivos y no podrán ser modificadas. En la figura \ref{fig:model} se tiene una visualización del modelo.
 
 \begin{figure}
 	\centering
@@ -116,13 +116,13 @@ El modelo diseñado consta de \textbf{quince entidades} las cuales son descritas
 \textbf{User} es la tabla que contiene la información  de los usuarios, tiene más campos que hereda de Identity framework para cuestiones de seguridad, pero aqui solo se mostraran los necesarios para describir el modelo visto en la  fig \ref{fig:model}
 
 \begin{itemize}
-	\item	$Id$ ($PK$): Texto que identifica de forma única un usuario.
+	\item	$Id$ ($PK$): Texto que identifica de forma única a un usuario.
 	\item	$FirstName$: Texto utilizado para almacenar el nombre del usuario.
 	\item	$LastName$: Texto utilizado para almacenar el apellido del usuario.
 
 	\item	$Email$: Texto utilizado para almacenar la dirección de correo del usuario.
 	\item	$Password$: Texto utilizado para almacenar la contraseña del usuario
-	\item	$PhoneNumber$: Entero utilizado para almacenar el número de telefono del usuario.
+	\item	$PhoneNumber$: Entero utilizado para almacenar el número de teléfono del usuario.
 	\item	$LastSyncronized$: Fecha que almacena la última vez que el usuario se sincronizó con la bd, este dato juega un papel fundamental en la sincronización.
 	
 	
@@ -159,7 +159,7 @@ El modelo diseñado consta de \textbf{quince entidades} las cuales son descritas
 	\item	$IdPerson$($FK$): Texto que identifica de forma única a la persona que insertó una visita médica en la aplicación.
 	\item	$Date$: Texto utilizado para almacenar la fecha de una visita médica.
 	\item	$Place$: Texto que representa el lugar en el que se realizó una visita médica.
-	\item	$Doctor$: Texto que contiene el nombre del médico o especialista que realizo una visita médica.
+	\item	$Doctor$: Texto que contiene el nombre del médico o especialista que realizó una visita médica.
 	\item	$Notes$: Texto utilizado para almacenar notas extras sobre una visita médica.
 	\item	$CreateOnDb$ 
 	Fecha para identificar cuando fue generado este dato en la BD
@@ -257,7 +257,7 @@ Fecha para identificar cuando fue generado este dato en la BD
 	\item	$Title$: Texto utilizado para guardar el título de una radiología, una patología o una cirugía en dependencia del caso.
 	\item	$Result$: Texto que contiene el resultado de una radiología, una patología o una cirugía en dependencia del caso.
 	\item	$Place$: Texto que representa el lugar en el que se realizó una radiología, una patología o una cirugía en dependencia del caso.
-	\item	$Doctor$: Texto que contiene el nombre del médico o especialista que realizo una radiología, una patología o una cirugía en dependencia del caso.
+	\item	$Doctor$: Texto que contiene el nombre del médico o especialista que realizó una radiología, una patología o una cirugía en dependencia del caso.
 	\item	$Notes$: Texto utilizado para almacenar notas extras sobre una radiología, una patología o una cirugía en dependencia del caso.
 		\item	$CreateOnDb$ 
 	Fecha para identificar cuando fue generado este dato en la BD
