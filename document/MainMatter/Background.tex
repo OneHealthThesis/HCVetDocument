@@ -1,14 +1,12 @@
-
 \chapter{Estado del Arte}\label{chapter:state-of-the-art}
-Actualmente existe una creciente preocupación por el cuidado animal donde la aparición de nuevas tendencias tecnológicas ha permitido el desarrollo de aplicaciones que facilitan no solo el cuidado de las mascotas por sus dueños, sino que hacen mucho más fácil el trabajo de las clínicas veterinarias como el de los profesionales de la salud.
 
-Es así, como se puede observar un aumento de aplicaciones para Android dirigidas a establecimientos veterinarios que consiguen optimizar muchas de las tareas relacionadas con esta actividad permitiendo prestar un mejor servicio por parte de dichos hospitales veterinarios y a su vez ofrecerle suficiente información al dueño de la mascota de manera que pueda tomar la mejor decisión cuando se trata de vigilar la salud del animal y la elección del centro veterinario que mejor lo atienda.
+Actualmente existe una creciente preocupación por el cuidado animal, campo donde la aparición de nuevas tendencias tecnológicas ha permitido el desarrollo de aplicaciones que facilitan no solo el cuidado de las mascotas por sus dueños, sino que hacen mucho más fácil el trabajo de los profesionales de la salud animal. Es así, como se puede observar un aumento de aplicaciones para Android dirigidas a especialistas veterinarios que consiguen optimizar muchas de las tareas relacionadas con su actividad y permiten prestar un mejor servicio a las clínicas donde ellos actúan. Permiten también ofrecerle suficiente información al dueño de la mascota de manera que pueda tomar la mejor decisión cuando se trata de vigilar la salud del animal y la elección del centro veterinario que mejor lo atienda.
 
-En este capítulo se estudiará en que consisten las historias clínicas y que papel juegan dentro de la medicina veterinaria. Además, se analizarán algunas de las aplicaciones que en la actualidad tienen funcionalidades similares a las que se plantean en este documento para ser implementadas en el producto final. Así como las prestaciones de algunas de las aplicaciones encontradas que han sido desarrolladas en nuestro país en favor del bienestar animal. Luego de esto se estudian las posibilidades para la construcción una API para el software en cuestión, decidiéndose una plataforma de desarrollo de servidores y un modelo de base de datos para almacenar los datos de manera general.\newpage
+En este capítulo se estudiará en que consisten las historias clínicas y que papel juegan dentro de la medicina veterinaria. Se analizarán además algunas de las aplicaciones que en la actualidad tienen funcionalidades similares a las que se plantea deba poseer el producto final del presente trabajo. Se estudian también las prestaciones de algunas de las aplicaciones desarrolladas en nuestro país en favor del bienestar animal. Se presentan además las posibilidades para la construcción de una API para el software en cuestión, decidiéndose una plataforma de desarrollo de servidores y un modelo de base de datos para almacenar los datos de manera general.
 
 \section{Antecedentes históricos de los servicios \newline veterinarios}
 
-Según la  OIE  los  servicios veterinarios se refieren a las organizaciones, que aplican las medidas de protección de la sanidad, el bienestar de los animales y las demás normas y recomendaciones del Código Terrestre y del Código Sanitario para los Animales Acuáticos de la OIE en el territorio de un país. Los Servicios Veterinarios actúan bajo control y tutela de la autoridad veterinaria. Normalmente, las entidades del sector privado, los profesionales veterinarios o los profesionales de la sanidad de los animales acuáticos deben contar con la acreditación o aprobación de la autoridad veterinaria para ejercer estas funciones delegadas \brackcite{depapel}. 
+Según la OIE los servicios veterinarios se refieren a las organizaciones, que aplican las medidas de protección de la sanidad, el bienestar de los animales y las demás normas y recomendaciones del Código Terrestre y del Código Sanitario para los Animales Acuáticos de la OIE en el territorio de un país. Los Servicios Veterinarios actúan bajo control y tutela de la autoridad veterinaria. Normalmente, las entidades del sector privado, los profesionales veterinarios o los profesionales de la sanidad de los animales acuáticos deben contar con la acreditación o aprobación de la autoridad veterinaria para ejercer estas funciones delegadas \brackcite{depapel}. 
 
 Acorde a lo planteado por Mohar \brackcite{Fernandez2004} la práctica de la cirugía veterinaria se remonta a épocas ancestrales. Desde la edad primitiva el hombre atendía a los animales con los cuales convivía. Evidencias de ello existen en las pinturas halladas en la gruta de Altamira, en Santander, España, donde se admiran diseños de instrumentos de cirugía que datan de más de 2500 años a.n.e. y que fueron utilizados para realizar una operación cesárea a un bisonte hembra.   
 
@@ -18,8 +16,6 @@ De este modo, numerosos son los hechos que demuestran la presencia de los servic
 Durante el período de influencia del pensamiento ilustrado, en 1761, se fundó y se puso en funcionamiento la Escuela de Veterinaria de Lyon, la primera institución educativa en esta especialidad en el mundo. El destacado Veterinario francés Claude Bourgelat (1712 – 1779) en el mismo año publica Eléments de l’art vétérinaire, obra fundadora de una verdadera Veterinaria científica, y es nombrado director de la recién creada Escuela Nacional Veterinaria de Lyon. Bourgelat es considerado como el fundador de la medicina equina en Francia y en 1776 participa en la fundación de Escuela Nacional de Veterinaria de Maisons-Alfort en París. \brackcite{thesisSistemaInf} 
 
 Hasta principios de la segunda mitad del siglo XIX, los veterinarios del continente americano eran graduados de escuelas españolas, francesas o de otros países europeo. La carencia de escuelas especializadas en los países del continente produjo que durante un largo período fueran enviados veterinarios, principalmente de Europa hacia América.  
-
-
 
 \subsection{Breve Historia de la Veterinaria en Cuba}
 
@@ -67,8 +63,6 @@ La calidad en su confección está condicionada por muchos factores. Por un lado
 
 En la figura \ref{HCIvsHC} se resumen las diferentes características de la HC tradicional y la HCI a través de una comparación de sus fortalezas y debilidades.
 
-
-Los programas para el manejo de la información de la HC principalmente tienen dos componentes: una base de datos y un programa informático para suministrar y acceder a estos datos. Por el volumen de información que se maneja cada uno de estos componentes debe tener la potencia y la seguridad que garanticen un adecuado producto. Hoy son innumerables los programas y soluciones informáticas que se ofrecen en el mercado, lo cual ha generado gran cantidad de soluciones, adecuadas a los requerimientos y las exigencias de sus creadores \brackcite{rueda2006historia}. El propio autor señala que los factores que con mayor peso influyen negativamente en la adopción e implementación a nivel institucional de la HCI son:  
 \begin{center}
 	\begin{figure}
 		\caption{Diferencias entre la HCI y la HC tradicional. }
@@ -77,7 +71,7 @@ Los programas para el manejo de la información de la HC principalmente tienen d
 	\end{figure}
 \end{center}
 
-
+Los programas para el manejo de la información de la HC principalmente tienen dos componentes: una base de datos y un programa informático para suministrar y acceder a estos datos. Por el volumen de información que se maneja cada uno de estos componentes debe tener la potencia y la seguridad que garanticen un adecuado producto. Hoy son innumerables los programas y soluciones informáticas que se ofrecen en el mercado, lo cual ha generado gran cantidad de soluciones, adecuadas a los requerimientos y las exigencias de sus creadores \brackcite{rueda2006historia}. El propio autor señala que los factores que con mayor peso influyen negativamente en la adopción e implementación a nivel institucional de la HCI son:  
 \begin{itemize}
 	\item	Los desarrollos estandarizados (comerciales) no siempre cumplen las expectativas de los usuarios lo que genera mayor resistencia al cambio.  
 	
@@ -90,58 +84,89 @@ Los programas para el manejo de la información de la HC principalmente tienen d
 	\item La implementación de la HCI frecuentemente necesita cambios o rediseño de procesos administrativos y asistenciales, situación un tanto compleja de prever, y que genera un motivo adicional de rechazo.  
 \end{itemize}
 
+Ahora bien, todos los aspectos anteriormente descritos son superables mediante el desarrollo de las TIC, pero las fuentes primarias que nutren la construcción de la HCI es la actividad documentalista del equipo sanitario. Sin su participación decidida para alimentar las bases de datos en forma adecuada no se lograrían los resultados esperados, constituyen el actor primario del proceso.
 
+\section{Estudios Previos}
+\brackcite{jarrin2021diseno}
+Un trabajo de vital importancia para la temática de estudio lleva por nombre \textbf{Aplicación Móvil para Centralizar Servicios de Mascotas}, elaborado por Maribel Boggio et al en el año 2017. Como objetivo central se pretende construir una aplicación móvil para centralizar servicios de mascotas. Su razón de existencia se justifica dado que en los últimos años las mascotas han ido adquiriendo mayor protagonismo en la vida de los humanos, formando parte importante del núcleo familiar y recibiendo los mismos cuidados que cualquiera de sus miembros. Las familias que tienen una mascota se preocupan cada vez más por brindarle los mejores cuidados posibles. Pero surge un inconveniente, en muchas ocasiones por más que deseen brindarles los mejores cuidados, no saben dónde es posible obtenerlos. Ignoran si los centros de asistencia a los cuales acuden tienen una buena o mala reputación, buscan servicios y muchas veces no los encuentran, desconocen ciertos tratamientos que pueden beneficiar a sus mascotas, inclusive ofertas de productos que pudieran adquirir. En términos metodológicos se realizaron varios estudios de mercado donde se evidenció una falta de servicios para las mascotas. 
 
-Ahora bien, todos los aspectos anteriormente descritos son superables mediante el desarrollo de las TIC, pero las fuentes primarias que nutren la construcción de la HCI es la actividad documentalista del equipo sanitario; sin su participación decidida para alimentar las bases de datos en forma adecuada no se lograrían los resultados esperados, constituyen el actor primario del proceso.
+Como resultado del trabajo mencionado se obtuvo la implementación de la aplicación \textbf{Guau}.
+Este un proyecto factible y financieramente viable con una TIR de 29\%. Esto se sustenta en el análisis económico–financiero. El horizonte de estudio fue definido en 4 años debido a que, si bien es una solución tecnológica y todo hace indicar que continuará en ascenso, no podemos perder de vista la rapidez y evolución de este mercado. La estrategia de la empresa será de diferenciación, en el mercado no existe algo similar y el contacto con los clientes será personalizado de acuerdo a sus necesidades. Hoy en día en el Perú existe una clara preferencia por perros como mascota, por ello el desarrollo de la aplicación se centrará en canes. No debemos perder de vista al gato como mascota, el cual tiene una tendencia de crecimiento importante, aunque todavía lejos de los perros.
 
+\brackcite{jarrin2021diseno}Otra investigación que se suma importancia para este proyecto lleva por nombre 
+\textbf{Estudio para la creación de una tienda en línea para servicios veterinarios y 
+productos para mascotas delimitado a Bogotá}, elaborado por Jessica Chaki 
+Strelec en el año 2016, el objetivo general de este es analizar el mercado de las 
+mascotas (perros y gatos) e identificar las oportunidades para la comercialización 
+de productos y servicios veterinarios en línea, como metodología se tuvo la 
+metodología planteada para el desarrollo de este proyecto está basada en analizar 
+el objetivo del trabajo, y así, realizar consultas bibliográficas relacionadas con la 
+prestación de servicios y mercadeo aplicable a una empresa veterinaria, además 
+de información sobre empresas en línea. 
+Al comienzo del trabajo se conseguirán datos suficientes sobre los temas 
+relacionados con una empresa en-línea, productos para mascotas, mercadeo, 
+servicios veterinarios; luego, se profundizará en estos temas para correlacionarlos 
+y constituir una base teórica para la creación de esta empresa. Con ello, se 
+realizará una investigación exploratoria, en la recopilación de información. Se 
+consultarán fuentes primarias con la aplicación de encuestas para establecer la 
+disposición del usuario, y secundarias, como lo son entes gubernamentales, 
+universidades y portales de internet. Para la investigación exploratoria, se va a 
+indagar o examinar un problema o situación para proporcionar conocimiento y 
+entendimiento sobre cierto tema. Este tipo de investigación se puede utilizar para: 
+formular o definir un problema con más precisión. Como resultado se obtuvo que 
+este estudio está fundamentado en la propuesta que resalta la influencia de la 
+21
+tecnología en las nuevas generaciones y en los mercados, más específicamente, 
+en el de las mascotas.
 
+Al realizar un estudio como el que se expuso previamente, se evidenció la 
+necesidad de crear lineamientos pertinentes para la creación de una página en línea. Esta irá enfocada hacia los diferentes propietarios de perros y gatos, 
+principalmente desde la oferta de productos de alimentación, cuidado, salud y 
+accesorios. Se genera mayor satisfacción a los clientes por el servicio prestado, 
+ya que las facilidades de pago, procesos de compra, disponibilidad inmediata y el 
+fácil acceso desde cualquier punto de la ciudad, por medio de cualquier dispositivo 
+con conexión a internet, hace posible el llegar al consumidor y hacerle más 
+sencilla la adquisición de sus necesidades.
 
-
-
-\section{Sofwares desarrolladas en Cuba}
+\section{Softwares desarrollados en Cuba}
 A continuación, se presentan estudios previos o antecedentes investigativos, como referentes para este proyecto, en los cuales se establecen la utilización de softwares para la prestación de servicios médicos veterinarios en Cuba. 
 
-\subsection{Web del Registro Cubano de Mascotas (RCM)}\label{chapter:introduction}
+\subsection{Web del Registro Cubano de Mascotas (RCM)}\label{chapter:web}
 
+%\begin{figure}[h!]
+%	\begin{center}
+%		\includegraphics[scale=0.4]{Graphics/images/LogodelRegistroCubanodeMascotas.jpg}
+%		\caption{Logo del Registro Cubano de Mascotas}
+%		\label{fig:rcm}
+%		
+%	\end{center}
+%\end{figure}
 
-\begin{figure}[h!]
-	\begin{center}
-		\includegraphics[scale=0.4]{Graphics/images/LogodelRegistroCubanodeMascotas.jpg}
-		\caption{Logo del Registro Cubano de Mascotas}
-		\label{fig:rcm}
-		
-	\end{center}
-\end{figure}
+Luego de más de 30 años de reclamos finalmente se aprueba en Cuba un Proyecto de Ley sobre protección animal que busca defender los derechos de animales silvestres, de granja y de compañía. Los animales de granja y silvestres tienen derechos y una connotación legal y ética, pero no social. En cambio, los de compañía si pueden y deben entrar en este grupo por su vinculación estrecha al dueño, su familia y el entorno comunitario. Desde esta perspectiva se hace obligatorio que la mascota sea identificada oficialmente y cambiar su estatus de objeto a sujeto. En una reunión efectuada en marzo de 2006 en el Consejo Científico Veterinario de La Habana algunos médicos, técnicos y estudiantes veterinarios abogaron por realizar un estudio para un registro de las mascotas a través de una intranet del Instituto de Medicina Veterinaria. Su objetivo era poder acceder a los datos de las mascotas desde cualquier lugar del país.
 
-
-Luego de más de 30 años de lucha finalmente Cuba aprueba un Proyecto de Ley sobre protección animal que busca defender los derechos de animales silvestres, de granja y de compañía. Los animales de granja y silvestres tienen derechos y una connotación legal y ética, pero no social. En cambio, los de compañía si pueden y deben entrar en este grupo por su vinculación estrecha al dueño, su familia y el entorno comunitario. Desde esta perspectiva se hace obligatorio que la mascota sea identificada oficialmente y cambiar su estatus de objeto a sujeto. En una reunión efectuada en marzo de 2006 en el Consejo Científico Veterinario de la Habana algunos médicos, técnicos y estudiantes veterinarios abogaron por realizar un estudio para un registro de las mascotas a través de una intranet del Instituto de Medicina Veterinaria. Su objetivo era poder acceder a los datos de las mascotas desde cualquier lugar del país.
-
-Con este enfoque se crea la \textbf{web del Registro Cubano de Mascotas}\brackcite{insReg}, un espacio digital que brinda identificación, respaldo en el cuidado, protección y tenencia responsable de los animales de compañía. Como una de las particularidades se destaca la posibilidad de obtener un documento de identidad, totalmente gratuito; que llevará en él todos los datos de los animales que se inscriben y las de su persona responsable. Este es un proceso sencillo e intuitivo en el que se deben realizar los pasos mostrados a continuación:
-
+Con este enfoque se crea la \textbf{web del Registro Cubano de Mascotas}\brackcite{insReg}, un espacio digital que brinda identificación, respaldo en el cuidado, protección y tenencia responsable de los animales de compañía. Como una de las particularidades se destaca la posibilidad de obtener un documento de identidad, totalmente gratuito, que llevará en él todos los datos de los animales que se inscriben y las de su persona responsable. Este es un proceso sencillo e intuitivo en el que se deben realizar los pasos que se enuncian a continuación:
 \begin{itemize}
-	\item Acceder a través del teléfono celular o una computadora al sitio www.mascotascuba.com
-	\item Rellenar los datos solicitados como nombre de la mascota, fecha de su nacimiento, sexo, raza, foto, dirección.
+	\item Acceder a través del teléfono celular o una computadora al sitio www.mascotascuba.com,
+	\item Completar los datos solicitados como nombre de la mascota, fecha de su nacimiento, sexo, raza, foto, dirección,
 	\item Ingresar el correo electrónico o teléfono del tutor de la mascota.
 \end{itemize}
-
 Hasta agosto de 2021, estaban oficialmente registrados en la plataforma alrededor de 21 000 animales. De ellos, el $60 \%$ eran perros, $30 \%$ gatos, $7 \%$ aves y un $3 \%$ de roedores, reptiles, equinos, bovinos, porcinos, y otras especies.
 
-\subsection{BACuba}\label{chapter:introduction}
+\subsection{BACuba}\label{chapter:bacuba}
 
-\begin{figure}[h!]
-	\begin{center}
-		\includegraphics[scale=0.09]{Graphics/images/LogodeBienestarAnimalenCuba.png}
-		\caption{Logo de Bienestar Animal en Cuba}
-		\label{fig:bac}
-		
-	\end{center}
-\end{figure}
+%\begin{figure}[h!]
+%	\begin{center}
+%		\includegraphics[scale=0.09]{Graphics/images/LogodeBienestarAnimalenCuba.png}
+%		\caption{Logo de Bienestar Animal en Cuba}
+%		\label{fig:bac}
+%		
+%	\end{center}
+%\end{figure}
 
-\textbf{ BACuba}\brackcite{apMov} \brackcite{cubDis} es una aplicación para teléfonos móviles que tiene como fin lograr el bienestar animal y sensibilizar a las personas para la protección de estos seres vivos. Dicha aplicación es una iniciativa de la organización \textbf{Bienestar Animal Cuba}\brackcite{pOBAC}, la mayor red de voluntarios para la protección animal. Fue lanzada desde el pasado 19 de enero de 2022, y se basa en el principio que rige la organización: rescatar animales abandonados y brindarles todos los cuidados. También buscan promover campañas, actividades, ferias y spots para garantizar el bienestar animal. Esta novedosa aplicación posee varias utilidades separadas en varias secciones:
-
+\textbf{ BACuba} \brackcite{apMov, cubDis} es una aplicación para teléfonos móviles que tiene como fin lograr el bienestar animal y sensibilizar a las personas con la protección de estos seres. Dicha aplicación es una iniciativa de la organización \textbf{Bienestar Animal Cuba}\brackcite{pOBAC}, la mayor red de voluntarios para la protección animal. Fue lanzada desde el pasado 19 de enero de 2022, y se basa en el principio que rige la organización: rescatar animales abandonados y brindarles todos los cuidados. También buscan promover campañas, actividades, ferias y spots para garantizar el bienestar animal. Esta novedosa aplicación posee varias utilidades separadas en varias secciones:
 \begin{itemize}
 	\item \textbf {Adoptar}: En este panel se muestran todos los datos (nombre, edad, sexo, raza) y con una foto incluida de los animales que están en adopción, ya sea perros, gatos u otros.
-	\item \textbf{ Reportes}: Esta es una de las secciones más humanas, ya que los usuarios podrán reportar desapariciones de mascotas, acciones de maltrato animal, atropellos, abandonos, animales en estado de vulnerabilidad. Pueden hacerlo desde cualquier parte del país y con estas denuncias los voluntarios de las distintas redes de ayuda animal o cualquier persona sensibilizada tomarán cartas en el asunto.
+	\item \textbf{Reportes}: Esta es una de las secciones más humanas, ya que los usuarios podrán reportar desapariciones de mascotas, acciones de maltrato animal, atropellos, abandonos, animales en estado de vulnerabilidad. Pueden hacerlo desde cualquier parte del país y con estas denuncias los voluntarios de las distintas redes de ayuda animal o cualquier persona sensibilizada tomará cartas en el asunto.
 	\item \textbf{Cuidados}: En este apartado se brindan informaciones de mucha ayuda para los dueños de mascotas y que son útiles para todas las provincias y municipios del país. Por ejemplo, una lista con direcciones y teléfonos de las principales clínicas veterinarias, tiendas de accesorios y medicinas para sus mascotas, y algunos artículos de interés para aumentar la cultura del cuidado animal.
 	\item \textbf{Noticias}: Aquí te podrás enterar de eventos relevantes como ferias de adopciones a lo largo de toda Cuba, donaciones y otras actividades en las que quizás te interese participar.
 	\item \textbf{Mis Mascotas}: En este apartado podrás registrar a tus animales con sus nombres, fecha de nacimiento, y todos los datos de su carnet de identidad, en el caso de poseer uno. En esta base de datos podrás incluir, además, un registro con los días de vacunación y desparasitación, a modo de recordatorio.
@@ -149,44 +174,36 @@ Hasta agosto de 2021, estaban oficialmente registrados en la plataforma alrededo
 
 Información general de BACuba:
 
-
 \begin{itemize}
 	\item Funciona con los datos móviles activados o por medio de servicio Wifi.
-	\item Está diseñada únicamente para dispositivos móviles, con un tamaño de 12.60 MB y requiere una versión de Android 5.0 o versiones superiores.
+	\item Está diseñada únicamente para dispositivos móviles, con \textbf{un tamaño de 12.60 MB} y requiere una versión de Android 5.0 o versiones superiores.
 	\item Es útil para cualquier lugar del país.
 	\item Puede ser descargada, libre de costo, de la plataforma APKLIS.
 	\item Tiene un diseño sencillo pero atractivo, y cumple con su función de informar, orientar, educar y ayudar en cuanto a materia de protección animal.
 \end{itemize}
 
-
 \subsection{Sistema de información para el control de expedientes clínicos para médicos veterinarios}
 
-Sistema capaz de gestionar el control de historias 
-clínicas veterinarias, además de la utilización con fines educativos e informativo ya que 
-cuenta con las funciones de la publicación de contenidos referentes a la carrera , tales 
-como: artículos, imágenes, foros, blog, libros, etc. Además facilita el trabajo debido a la 
-función de guardar y exportar los reportes. \brackcite{thesisSistemaInf}
-\newline
+Sistema capaz de gestionar el control de historias clínicas veterinarias, además de la utilización con fines educativos e informativo ya que 
+cuenta con las funciones de la publicación de contenidos referentes a la carrera , tales como: artículos, imágenes, foros, blog, libros, etc. Además facilita el trabajo debido a la función de guardar y exportar los reportes. \brackcite{thesisSistemaInf}
 
-\section{Aplicaciones móviles que gestionan Historias Clínicas Veterinarias}\label{chapter:introduction}
+\section{Aplicaciones móviles que gestionan Historias Clínicas Veterinarias}\label{chapter:appmov}
 
-\subsection{Dog Health}\label{chapter:introduction}
+\subsection{Dog Health}\label{chapter:doghe}
 
-\begin{figure}[h!]
-	\begin{center}
-		\includegraphics[scale=0.12]{Graphics/images/LogodeDogHealth.png}
-		\caption{Logo de Dog Health}
-		\label{fig:dh}
-		
-	\end{center}
-\end{figure}
+%\begin{figure}[h!]
+%	\begin{center}
+%		\includegraphics[scale=0.12]{Graphics/images/LogodeDogHealth.png}
+%		\caption{Logo de Dog Health}
+%		\label{fig:dh}
+%		
+%	\end{center}
+%\end{figure}
 
 
-\textbf{Dog Health}\brackcite{dogHe} es una aplicación totalmente gratuita para móviles y tablets, fue creada por un comunicador italiano, por lo que está solo disponible en el idioma inglés. Creada para llevar el registro veterinario de nuestras mascotas en Android. Dentro de sus principales prestaciones se encuentran:
+\textbf{Dog Health}\brackcite{dogHe} es una aplicación totalmente gratuita para móviles y tablets, fue creada por un comunicador italiano y solo está disponible en el idioma inglés. Creada para llevar el registro veterinario de nuestras mascotas en Android. Dentro de sus principales prestaciones se encuentran:
 
 \begin{itemize}
-	
-	
 	\item	Guardar los datos personales de las mascotas como su nombre, peso, fecha de nacimiento, número de chip, entre otros.
 	\item	Hacer un seguimiento de anteriores visitas al veterinario.
 	\item	Administrar a los veterinarios.
@@ -197,67 +214,50 @@ función de guardar y exportar los reportes. \brackcite{thesisSistemaInf}
 	\item	Añadir múltiples mascotas.
 	\item	Realizar backups y restaurarlos.
 	\item	Guardar la evolución del peso y altura de las mascotas de forma continuada.
-	
 \end{itemize}
 
 
-\subsection{Pet Soft}\label{chapter:introduction}
+\subsection{Pet Soft}\label{chapter:petso}
 
+\textbf{ Pet Soft}\brackcite{sofVet} \brackcite{petSo} es una plataforma para clínicas veterinarias y dueños de mascotas creada para almacenar y gestionar todo lo relacionado del paciente. Permite establecer citas, vacunas y almacenar todo tipo de información detallada con el fin de contar con un completo historial médico que le permita tanto al profesional veterinario como a los dueños de las mascotas acceder de manera segura a la información completa del animal. Esta plataforma es completamente web y la aplicación se puede descargar desde cualquier dispositivo con sistema operativo Android o IOS.
 
+Como ventaja para el usuario, sea este médico o dueño de la mascota, la descarga de la aplicación se realiza de forma intuitiva siendo posible ingresar toda la información requerida y vital para los pacientes. Su fortaleza radica en la fácil visualización y datos de carga que aseguran una experiencia agradable para sus usuarios. Mediante el empleo de este software los usuarios pueden gestionar de forma segura y sencilla todo lo relacionado con las mascotas y acceder a la ubicación de la red más completa de veterinarias. La información de cada mascota se almacena en la web de modo que, en cada centro veterinario, se podrá descargar sin necesidad de que se tengan que volver a registrar los datos en el sistema. Dentro de sus principales beneficios para clínicas veterinarias se encuentran:
 
+%\begin{figure}[!h]
+%	\begin{center}
+%		\includegraphics[scale=0.5]{Graphics/images/LogodePetSoft.png}
+%		\caption{Logo de Pet Soft}
+%		\label{fig:dh}
+%		
+%	\end{center}
+%\end{figure}
 
-\textbf{ Pet Soft}\brackcite{sofVet} \brackcite{petSo} es una plataforma para veterinarias y dueños de mascotas creada para almacenar y gestionar agendamientos con todo lo relacionado del paciente estableciendo citas, vacunas y todo tipo de información detallada con el fin de contar con un completo historial médico que le permita no solo al profesional veterinario, sino a los dueños de las mascotas acceder de manera segura a la información completa del animal. Esta plataforma es completamente web y la aplicación se puede descargar desde cualquier dispositivo con sistema operativo Android o IOS.
-
-Como ventaja para el usuario sea médico o dueño de la mascota conseguirá descargar la aplicación de forma intuitiva donde podrá ingresar toda la información requerida y vital para los pacientes. Su fortaleza radica en la fácil visualización y datos de carga que aseguran una experiencia agradable para sus usuarios. Con la implementación del software los usuarios pueden gestionar de forma segura y sencilla todo lo relacionado con las mascotas y acceder a la ubicación de la red más completa de veterinarias. La información de cada mascota, se alberga en la web, de modo que, en cada centro veterinario, se podrá descargar, sin necesidad de que se tengan que volver a registrar los datos en el sistema. Dentro de sus principales beneficios se encuentran:
-
-\begin{figure}[!h]
-	\begin{center}
-		\includegraphics[scale=0.5]{Graphics/images/LogodePetSoft.png}
-		\caption{Logo de Pet Soft}
-		\label{fig:dh}
-		
-	\end{center}
-\end{figure}
-Beneficios para veterinarias:
 \begin{itemize}
-	
-	
-	\item	Consultas y servicios: crear consultas y servicios; todo bajo control del software.
-	\item	Tarifas y bonos: manejar tus propias tarifas, generar bonos promocionales.
-	\item	Citas y alarmas: notificaciones para las citas programadas o crear una directamente.
-	\item	Veterinarias en red: consultar la historia clínica de la mascota si ha estado en otra veterinaria.
-	\item	Médicos veterinarios: crear usuarios especializados para tu veterinaria.
-	
+	\item	Consultas y servicios: crear consultas y servicios; todo bajo control del software,
+	\item	Tarifas y bonos: manejar tus propias tarifas, generar bonos promocionales,
+	\item	Citas y alarmas: notificaciones para las citas programadas o crear una directamente,
+	\item	Clínicas veterinarias en red: consultar la historia clínica de la mascota si ha estado en otra veterinaria,
+	\item	Médicos veterinarios: crear usuarios especializados para tu veterinaria,
 \end{itemize}
-
-Beneficios para tu mascota:
+Para los dueños de mascotas ofrece:
 \begin{itemize}
-	
-	
-	\item	Datos básicos: registrar todas las mascotas.
-	\item	Historia clínica: llevar el historial de las consultas de tus mascotas directamente de las veterinarias.
-	\item	Citas: notificaciones para las citas programadas o crear una directamente.
-	\item	Veterinarias: un mapa para buscar la veterinaria más cercana.
+	\item	Datos básicos: registrar todas las mascotas,
+	\item	Historia clínica: llevar el historial de las consultas de tus mascotas directamente de las veterinarias,
+	\item	Citas: notificaciones para las citas programadas o crear una directamente,
+	\item	Veterinarias: un mapa para buscar la veterinaria más cercana,
 	\item	Carné: llevar en la app el carnet de vacunación de tus mascotas.
 \end{itemize}
 
-\subsection{Guau}
-\brackcite{jarrin2021diseno}
-Un estudio que fue de vital importancia para la temática de estudio lleva por nombre \textbf{Aplicación Móvil para Centralizar Servicios de Mascotas}, elaborado por Maribel Boggio en el año 2017, como objetivo central se pretende construir una aplicación móvil para centralizar servicios de mascotas, su problema se justifica en que en los últimos años las mascotas han ido adquiriendo mayor protagonismo en la vida de los humanos, formando parte importante del núcleo familiar y recibiendo los mismos cuidados que cualquiera de sus miembros. Las familias que tienen una mascota se preocupan cada vez más por brindarle los mejores cuidados que les sea posible; pero surge un inconveniente, en muchas ocasiones por más que deseen brindarles los mejores cuidados, no saben dónde realizarlos, si los lugares a los cuales van tienen una buena o mala reputación, buscan servicios y muchas veces no los encuentran, no saben que hay ciertos procedimientos, tratamientos que pueden beneficiar a sus mascotas, inclusive ofertas de productos que pudieran adquirir. En términos metodológicos se realizaron varios estudios de mercado donde se evidenció una falta de servicios para las mascotas. 
 
-Como resultados se obtuvo que la implementación de la Aplicación \textbf{Guau} es un proyecto factible y financieramente viable con una TIR de 29\%. Esto se sustenta en el análisis económico – financiero. El horizonte de estudio fue definido en 4 años debido a que, si bien es una solución tecnológica y todo hace indicar que continuará en ascenso, no podemos perder de vista la rapidez y evolución de este mercado. La estrategia de la empresa será de diferenciación, en el mercado no existe algo similar y el contacto con los clientes será personalizado de acuerdo a sus necesidades. Hoy en día en el Perú existe una clara preferencia por perros como mascota, por ello el desarrollo de la aplicación se centrará en canes. No debemos perder de vista al gato como mascota, el cual tiene una tendencia de crecimiento importante, aunque todavía lejos de los perros. 
 
-\section{Conclusiones}\label{chapter:introduction}
+\section{Conclusiones}\label{chapter:conclus}
 
-En esta sección se analizaron aplicaciones con similitudes a la que se plantea como finalidad en este documento. Todo esto con el objetivo de adoptar las ideas de la competencia o mejorarlas dependiendo del caso, sobre este tema se puede afirmar lo siguiente:
-
+En este capítulo se analizaron aplicaciones con similitudes a la que se plantea como finalidad en este documento. Todo esto con el objetivo de adoptar las ideas de la competencia o mejorarlas dependiendo del caso, sobre este tema se puede afirmar lo siguiente:
 \begin{enumerate}
-	
-	
 	\item	En general las herramientas en esta sección permiten la creación y el manejo de las historias clínicas digitales para nuestras mascotas, pero como se observó en cada caso estas no brindan la posibilidad para exportar de manera offline los datos de las mascotas que queramos compartir con otro usuario. Entre los objetivos de este trabajo está la mejora de este aspecto.
 	\item	Pocas de estas aplicaciones permiten al usuario consultar los datos de sus mascotas sin la necesidad de una conexión a Internet, aspecto que goza de gran peso entre los principales objetivos de este trabajo.
 	\item	Las herramientas para el manejo de las historias clínicas desde un dispositivo móvil, permiten a los usuarios ya sean médicos veterinarios o dueños y encargados de las mascotas acceder de manera sencilla y segura a toda la información referente al estado de salud, seguimiento, y cuidado del animal.
-	\item	Luego de analizar las aplicaciones anteriores se concluye como necesario el diseño de una aplicación que si cumpla con los requerimientos expuestos en este documento, porque en general estas aplicaciones no permiten el trabajo con historias clínicas animales de manera offline, aspecto de vital importancia debido a las limitaciones de la conexión a Internet que presenta nuestro país.
+	\item	Luego de analizar las aplicaciones anteriores se concluye como necesario el diseño de una aplicación que cumpla con los requerimientos para el presente trabajo planteados en la introducción. En general las aplicaciones existentes no permiten el trabajo con historias clínicas animales de manera offline, aspecto de vital importancia en nuestro contexto debido a las limitaciones de la conexión a Internet que presenta nuestro país.
 \end{enumerate}
 
 
