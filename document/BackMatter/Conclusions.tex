@@ -1,19 +1,21 @@
 \begin{conclusions}
-    Luego del desarrollo e implementación del proyecto; y la obtención de resultados, 
-    se evidenció la importancia  que presenta en la actualidad el cuidado y 
-    protección de los animales y la necesidad de realizar aplicaciones informáticas para agilizar y facilitar la 
-    prestación de los servicios veterinarios. 
+%    Luego del desarrollo e implementación del proyecto y la obtención de resultados, se evidenció la importancia  que presenta en la actualidad el cuidado y protección de los animales y la necesidad de realizar aplicaciones informáticas para agilizar y facilitar la prestación de los servicios veterinarios. 
     
-    El objetivo de este trabajo fué la creación de una API de la cual va a consumir la App móvil HCVet, de la que pudimos ver sus casos de uso, se hizo un análisis teórico computacional exponiendo la arquitectura utilizada y el modelo de datos. También se vieron detalles de implementación, el porqué de las herramientas y lenguajes utilizados.
+    El objetivo de este trabajo es la creación de una API a ser utilizada por la App móvil HCVet. Para ilustrar el desarrollo del mismo expusimos casos de uso de HCVet y se presentó un análisis teórico computacional de la arquitectura utilizada y el modelo de datos. También se mostraron detalles de implementación, el porqué de las herramientas y lenguajes utilizados.
     
-    De manera general se cumplió el objetivo de la hipótesis planteada, cumpliendo con las funcionalidades propuestas de las cuales se muestran algunas a continuación:
+De manera general se cumplió el objetivo planteado al lograrse las funcionalidades propuestas algunas de las cuales se se enuncian a continuación:
     \begin{itemize}
     	\item Almacenar información de forma segura sobre las características básicas del animal bajo el cuidado del usuario.
     	\item Proveer acceso a los profesionales a información histórica sobre el cuidado de los animales para no repetir errores cometidos anteriormente y agilizar la aplicación de sus servicios.
     	\item Crear de forma rápida nueva información sobre los animales.
-    	\item Permitir el acceso a datos ,controlado por el dueño de un animal, a otros usuarios con el fin de delegar el cuidado del animal.
-    
+    	\item Permitir el acceso a datos controlado por el dueño de un animal a otros usuarios con el fin de delegar el cuidado del mismo.
     \end{itemize}
-    
+Durante la investigación fue posible la explotación de las tecnologías expuestas y en la implementación de este sistema logramos, entre otras cosas, los resultados siguientes:
+\begin{itemize}
+	\item Se logró alojar la base de datos en un servidor de libre acceso usando SQL Server; esto nos permitió pruebas en etapa de desarrollo y  es una posible propuesta para un lanzamiento temprano de la aplicación.
+	\item Pudimos alojar el proyecto de la API en un servidor que nos permitió exponerla para su explotación desde la aplicación móvil. El hecho de haber expuesto una API REST usando el protocolo HTTPS nos permitirá la extensión del sistema con otros clientes, ya sean web u otras plataformas que puedan usar este protocolo.
+	\item La implementación presentada, al seguir los patrones y arquitecturas expuestos en este trabajo, permitirá la participación de nuevos desarrolladores para extenderla y actualizarla de forma organizada y segura. Una solución extensible y de fácil mantenimiento, es el objetivo de cualquier proyecto de software y se ha logrado en este sistema.
+	\item El uso de un desarrollo y despliegue continuo en nuestra estrategia de despliegue permite un desarrollo sin afectar la experiencia del usuario ni privarlo de los servicios puestos a su disposición.
+\end{itemize}
 
 \end{conclusions}
